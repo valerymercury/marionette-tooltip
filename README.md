@@ -24,14 +24,14 @@ $ bower install marionette-tooltip
 You can clone the GitHub repository
 
 ```bash
-$ git clone https://github.com/valerymercury/backbone-tooltip
+$ git clone https://github.com/valerymercury/marionette-tooltip
 ```
 
 ## Installation
 You will need to include the stylesheet in the `<head>` of every page the tooltip will be used on:
 
 ```html
-<link rel="stylesheet" href="bower_components/backbone-tooltip/src/backbone-tooltip.css">
+<link rel="stylesheet" href="bower_components/marionette-tooltip/src/marionette-tooltip.css">
 ```
 
 Include the following scripts before the closing `<head>` tag
@@ -40,7 +40,7 @@ Include the following scripts before the closing `<head>` tag
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
-<script src="bower_components/backbone-tooltip/src/marionette-tooltip.js"></script>
+<script src="bower_components/marionette-tooltip/src/marionette-tooltip.js"></script>
 ```
 
 Alter the paths above so they point to the correct locations in your file structure.
@@ -148,4 +148,4 @@ Options can be configured on each element using `HTML5` data-attributes. The fol
 ```
 
 ## Examples
-You can see a variety of working examples by visiting the [project page](http://joefitter.github.io/backbone-tooltip/).
+You can see a variety of working examples by visiting the [project page](http://joefitter.github.io/marionette-tooltip/).

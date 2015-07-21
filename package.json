@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/valerymercury/backbone-tooltip.git"
+    "url": "git://github.com/valerymercury/marionette-tooltip.git"
   },
   "author": "Valery Bugakov",
   "license": "MIT",
-  "homepage": "https://github.com/valerymercury/backbone-tooltip",
+  "homepage": "https://github.com/valerymercury/marionette-tooltip",
   "devDependencies": {
     "karma": "^0.12.12",
     "karma-jasmine": "^0.2.0",
