@@ -4,9 +4,11 @@
 /* leaving out use strict statement so
    can be included in non-strict modules */
 
-Backbone.Tooltip = Backbone.View.extend({
+Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
   className: 'tooltip',
-  arrowSize: 10,
+  arrowSize: 20,
+  template: 'tooltip',
+
   initialize: function(options) {
     if (!options || typeof options !== 'object') {
       throw new Error('Tooltip needs to be provided with a jQuery element object or options hash');
@@ -19,6 +21,11 @@ Backbone.Tooltip = Backbone.View.extend({
     if (options instanceof $) {
       this.options = this.parseDataAttributes(options);
     } else {
+      _.defaults(options, {
+        closeSelector: '.close',
+        align: 'bottom',
+        overlay: '#overlay-tooltip'
+      });
       this.options = options;
     }
 
@@ -97,6 +104,8 @@ Backbone.Tooltip = Backbone.View.extend({
 
     // Set rootElem to body if not specified
     this.options.rootElem = this.options.rootElem || $('body');
+    this.$overlay = $('body').find(this.options.overlay);
+    this.$overlay.show();
 
     this.render();
 
@@ -118,14 +127,15 @@ Backbone.Tooltip = Backbone.View.extend({
       this.show();
     }
 
-    if (this.options.exit) {
+    if (this.options.close) {
       /*
        * If exit event provided, save reference
        * of bound hide method. Doesn't actually
        * listen for this event until show() method
        * is fired.
        */
-      this.exitHandler = _.bind(this.hide, this);
+      this.$el.find(this.options.closeSelector).on('click', _.bind(this.exit, this));
+      // this.exitHandler = _.bind(this.hide, this);
     } else {
       // Add default exit listener if none provided.
       this.addDefaultExitListeners();
@@ -141,7 +151,7 @@ Backbone.Tooltip = Backbone.View.extend({
       elems = $('*').filter(function() {
         return $(this).data('activeTooltip') !== undefined && $(this).get(0) !== self.options.$el.get(0);
       });
-    /* 
+    /*
      * elems is a jQuery reference to all
      * elements on page with an active tooltip
      * except the current target element.
@@ -152,7 +162,7 @@ Backbone.Tooltip = Backbone.View.extend({
       if (tooltip) {
         if (tooltip.options.exit) {
           if (tooltip.$el.is(':visible')) {
-            /* 
+            /*
              * If tooltip has custom exit event
              * and is visible, hide it, else do
              * nothing as already hidden.
@@ -343,29 +353,18 @@ Backbone.Tooltip = Backbone.View.extend({
       this.exit();
     }
   },
+  serializeData: function() {
+    return this.options;
+  },
   render: function() {
-    //using _.template to reduce number of dependencies
-    var self = this,
-      template = '<div class="arrow"></div>';
-    template += '<div class="tooltip-text-wrapper"><span>';
-    if(this.options.prefix){
-      template += '<strong>' + this.options.prefix + ': </strong>';
-    }
-    template += '<%= options.text %>';
-    template += '</span></div>';
-    template += '<% if(options.feedback) { %>';
-    template += '<div class="feedback-buttons">';
-    template += '<button class="btn btn-primary tooltip-confirm">Yes</button> ';
-    template += '<button class="btn btn-primary tooltip-deny">No</button>';
-    template += '</div>';
-    template += '<% } %>';
-    this.$el.html(_.template(template)(this));
+    Marionette.ItemView.prototype.render.call(this, arguments);
 
     if (this.options.feedback) {
       if (this.options.context && this.options.context !== 'info') {
         this.changeButtonClass();
       }
     }
+    this.$overlay.show();
 
     //append to root element - default $('body')
     this.options.rootElem.append(this.el);
@@ -384,8 +383,7 @@ Backbone.Tooltip = Backbone.View.extend({
     $(window).on('resize', this.resizeHandler);
 
     //set text wrapper to same size as element to prevent bunching of text when animating width
-    $('div.tooltip-text-wrapper', this.el).outerWidth(this.width - (2 * this.padding) - 2 * this.borderWidth);
-
+    // $('div.tooltip-text-wrapper', this.el).outerWidth(this.width - (2 * this.padding) - 2 * this.borderWidth);
 
     if (this.options.timeout) {
       setTimeout(function() {
@@ -456,11 +454,13 @@ Backbone.Tooltip = Backbone.View.extend({
     this.pos = pos;
   },
 
-  exit: function() {
+  exit: function(evt, silent) {
     /*
      * wait until animation complete before
      * calling destroy();
      */
+
+    this.silent = silent || false;
     this.animate(false, this.destroy);
   },
 
@@ -471,7 +471,7 @@ Backbone.Tooltip = Backbone.View.extend({
     $(window).off('click', this.clickHandler);
     $(window).off('keydown', this.keypressHandler);
     $(window).off('resize', this.resizeHandler);
-
+    this.$overlay.hide();
 
     //Remove custom listeners if added.
     if (this.options.trigger) {
@@ -480,12 +480,21 @@ Backbone.Tooltip = Backbone.View.extend({
     if (this.options.exit) {
       this.options.$el.off(this.options.exit, this.exitHandler);
     }
+    if (this.options.onClose) {
+      this.onClose();
+    }
 
     /*
      * Unbind events and remove from DOM
      */
     this.remove();
     this.unbind();
+  },
+
+  onClose: function() {
+    if (!this.silent) {
+      this.options.onClose();
+    }
   },
 
   addClasses: function() {
@@ -529,5 +538,6 @@ Backbone.Tooltip = Backbone.View.extend({
         align = 'align-top';
     }
     this.$el.addClass(align);
+    this.$el.addClass(this.options.classes);
   }
 });

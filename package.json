@@ -1,21 +1,18 @@
 {
-  "name": "backbone-tooltip",
+  "name": "marionette-tooltip",
   "version": "v1.4.0",
-  "description": "AMD Tooltip using Backbone for use in RequireJS projects.",
-  "main": "src/backbone-tooltip.amd.js",
+  "description": "Tooltip using Marionette",
+  "main": "src/marionette-tooltip.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/joefitter/backbone-tooltip.git"
+    "url": "git://github.com/valerymercury/backbone-tooltip.git"
   },
-  "author": "Joe Fitter",
+  "author": "Valery Bugakov",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/joefitter/backbone-tooltip/issues"
-  },
-  "homepage": "https://github.com/joefitter/backbone-tooltip",
+  "homepage": "https://github.com/valerymercury/backbone-tooltip",
   "devDependencies": {
     "karma": "^0.12.12",
     "karma-jasmine": "^0.2.0",
