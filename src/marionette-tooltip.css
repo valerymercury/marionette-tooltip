@@ -1,7 +1,6 @@
 body {
   position: relative;
 }
-
 .tooltip {
   opacity: 1;
   padding:15px;
@@ -9,52 +8,46 @@ body {
   position:absolute;
   display: none;
   z-index:10;
-  border:2px solid #bce8f1;
-  font-size:14px;
-  line-height: 20px;
-  max-width:400px;
-  color:#31708f;
+  /*border:2px solid #bce8f1;*/
+  /*font-size:14px;*/
+  /*line-height: 20px;*/
+  /*max-width:400px;*/
+  /*color: #31708f;*/
   border-radius:4px;
   z-index: 1000;
 }
-
 .tooltip .arrow, .tooltip .arrow:after {
   width: 0;
   height: 0;
   content: '';
-  border: 10px solid transparent;
+  /*border: 10px solid transparent;*/
   position: absolute;
 }
-
 .tooltip.align-top .arrow {
-  border-top-color:#bce8f1;
-  bottom:-22px;
-  left:50%;
-  margin-left:-10px;
+  border-top-color: #bce8f1;
+  bottom: -22px;
+  left: 50%;
+  margin-left: -10px;
 }
-
 .tooltip.align-top .arrow:after {
-  border-top-color:#d9edf7;
-  bottom:-8px;
-  left:50%;
-  margin-left:-10px;
+  border-top-color: #d9edf7;
+  bottom: -8px;
+  left: 50%;
+  margin-left: -10px;
 }
-
 
 .tooltip.align-right .arrow {
   border-right-color: #bce8f1;
-  bottom:50%;
-  margin-bottom:-10px;
-  left:-22px;
+  bottom: 50%;
+  margin-bottom: -10px;
+  left: -20px;
 }
-
 .tooltip.align-right .arrow:after {
   border-right-color: #d9edf7;
   bottom:50%;
   margin-bottom:-10px;
   left:-8px;
 }
-
 .tooltip.align-left .arrow {
   border-left-color: #bce8f1;
   bottom:50%;
@@ -62,7 +55,6 @@ body {
   right:-22px;
   left: auto;
 }
-
 .tooltip.align-left .arrow:after {
   border-left-color: #d9edf7;
   bottom:50%;
@@ -70,39 +62,33 @@ body {
   right:-8px;
   left:auto;
 }
-
 .tooltip.align-bottom .arrow {
-  border-bottom-color: #bce8f1;
+  /*border-bottom-color: #bce8f1;*/
   left: 50%;
   margin-left:-10px;
   top:-22px;
 }
-
 .tooltip.align-bottom .arrow:after {
   border-bottom-color: #d9edf7;
   left: 50%;
   margin-left:-10px;
   top:-8px;
 }
-
 div.tooltip.success {
   background-color:#dff0d8;
   border-color:#d6e9c6;
   color:#3c763d;
 }
-
 div.tooltip.warning {
     background-color:#fcf8e3;
     border-color:#faebcc;
     color:#8a6d3b;
 }
-
 div.tooltip.danger {
   background-color:#f2dede;
   border-color:#ebccd1;
   color:#a94442;
 }
-
 div.tooltip.success.align-top .arrow {border-top-color: #d6e9c6}
 div.tooltip.success.align-top .arrow:after {border-top-color:#dff0d8}
 div.tooltip.success.align-left .arrow {border-left-color: #d6e9c6}

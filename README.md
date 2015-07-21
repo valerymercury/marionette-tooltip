@@ -1,12 +1,11 @@
-# Backbone Tooltip [![Build Status](https://travis-ci.org/joefitter/backbone-tooltip.svg?branch=master)](https://travis-ci.org/joefitter/backbone-tooltip)
+# Marionette Tooltip
+
 > Lightweight Bootstrap-esque tooltip that doesn't require Bootstrap
 
-Backbone Tooltip is a fully customisable plugin for use in web applications. It is written in BackboneJS but can be used in any front end environment.
+Marionette Tooltip is a fully customisable plugin for use in web applications. It is written in BackboneJS but can be used in any front end environment.
 
 ## Current version
-The latest version of Backbone Tooltip is **v1.4.0**. 
-
-Breaking changes from v1.3.2 have been made to data-attributes. These are now namespaced `data-bbtooltip` to prevent conflict with other modules that utilise data-attributes.
+The latest version of Marionette Tooltip is **v0.1.0**.
 
 ## Prerequisites
 Backbone Tooltip requires:
@@ -19,59 +18,29 @@ Note: Backbone requires either [Underscore](http://underscorejs.org/) or [Lo-Das
 Backbone Tooltip can be installed using [Bower](http://bower.io/)
 
 ```bash
-$ bower install backbone-tooltip
+$ bower install marionette-tooltip
 ```
 
 You can clone the GitHub repository
 
 ```bash
-$ git clone https://github.com/joefitter/backbone-tooltip
+$ git clone https://github.com/valerymercury/marionette-tooltip
 ```
-
-Or you can download the repo as a .zip [here](https://github.com/joefitter/backbone-tooltip/archive/master.zip) - extract and copy the src folder into your project.
 
 ## Installation
 You will need to include the stylesheet in the `<head>` of every page the tooltip will be used on:
 
 ```html
-<link rel="stylesheet" href="bower_components/backbone-tooltip/src/backbone-tooltip.css">
+<link rel="stylesheet" href="bower_components/marionette-tooltip/src/marionette-tooltip.css">
 ```
 
-#### AMD
-If your project uses [RequireJS](http://requirejs.org/), Backbone Tooltip can be included as an AMD module by adding the AMD version to your paths config, you will also need to specify the locations of jQuery, Backbone and Underscore:
-
-```js
-requirejs.config({
-  paths: {
-    tooltip: 'bower_components/backbone-tooltip/src/backbone-tooltip.amd',
-    backbone: 'bower_components/backbone/backbone',
-    jquery: 'bower_components/jquery/dist/jquery',
-    underscore: 'bower_components/underscore/underscore'
-    ...
-  }
-});
-```
-
-You can now use require to include the tooltip whenever it is needed:
-
-```js
-require(['tooltip'], function(Tooltip){
-  ...
-});
-
-define('module-name', ['tooltip', ...], function(Tooltip, ...){
-  ...
-});
-```
-
-#### Non-AMD
-For non-AMD projects, include the following scripts before the closing `<head>` tag
+Include the following scripts before the closing `<head>` tag
 
 ```html
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
-<script src="bower_components/backbone-tooltip/src/backbone-tooltip.js"></script>
+<script src="bower_components/marionette-tooltip/src/marionette-tooltip.js"></script>
 ```
 
 Alter the paths above so they point to the correct locations in your file structure.
@@ -115,7 +84,7 @@ $(element).on('focus', function(){
 
   //or
 
-  new Tooltip($jqueryObject);      
+  new Tooltip($jqueryObject);
 });
 ```
 
@@ -179,4 +148,4 @@ Options can be configured on each element using `HTML5` data-attributes. The fol
 ```
 
 ## Examples
-You can see a variety of working examples by visiting the [project page](http://joefitter.github.io/backbone-tooltip/).
+You can see a variety of working examples by visiting the [project page](http://joefitter.github.io/marionette-tooltip/).

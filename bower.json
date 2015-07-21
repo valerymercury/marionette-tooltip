@@ -1,19 +1,19 @@
 {
-  "name": "backbone-tooltip",
-  "version": "v1.4.0",
-  "homepage": "https://github.com/joefitter/backbone-tooltip",
+  "name": "marionette-tooltip",
+  "version": "v0.1.0",
+  "homepage": "https://github.com/valerymercury/marionette-tooltip",
   "authors": [
-    "Joe Fitter <joefitter@hotmail.com>"
+    "Joe Fitter <valerybugakov@gmail.com>"
   ],
-  "description": "AMD Tooltip using Backbone for use in RequireJS projects.",
+  "description": "Tooltip using Marionette.",
   "main": [
-    "src/backbone-tooltip.amd.js",
-    "src/backbone-tooltip.js",
-    "src/backbone-tooltip.css"
+    "src/marionette-tooltip.js",
+    "src/marionette-tooltip.css"
   ],
-  "moduleType": [
-    "amd"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/valerymercury/marionette-tooltip.git"
+  },
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -27,6 +27,7 @@
   ],
   "dependencies": {
     "backbone": ">=0.9.0",
-    "jquery": ">=1.9.0"
+    "jquery": ">=1.9.0",
+    "marionette": ">=1.8.8"
   }
 }
