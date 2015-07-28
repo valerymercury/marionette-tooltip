@@ -134,7 +134,7 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
        * listen for this event until show() method
        * is fired.
        */
-      this.$el.find(this.options.closeSelector).on('click', _.bind(this.exit, this));
+      this.$el.on('click', this.options.closeSelector, _.bind(this.exit, this));
       // this.exitHandler = _.bind(this.hide, this);
     } else {
       // Add default exit listener if none provided.
