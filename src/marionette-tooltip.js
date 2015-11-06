@@ -37,10 +37,6 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
       throw new Error('Tooltip needs a target element');
     }
 
-    if (this.options.text === undefined || this.options.text === '') {
-      throw new Error('Sorry, no tooltip text was provided.');
-    }
-
     // Feedback and Timout are incompatible options
     if (this.options.feedback && this.options.timeout) {
       throw new Error('Sorry, cannot timeout tooltip while awaiting feedback');
@@ -87,7 +83,7 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
       if (currentTooltip.options.interrupt) {
         return;
       }
-      currentTooltip.destroy();
+      currentTooltip.destroyTooltip();
     }
 
     /*
@@ -171,7 +167,7 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
           }
         } else {
           // remove tootlip;
-          tooltip.destroy();
+          tooltip.destroyTooltip();
         }
       }
     });
@@ -332,7 +328,7 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
     }
   },
   addDefaultExitListeners: function() {
-    //save references so events can be removed from window on destroy
+    //save references so events can be removed from window on destroyTooltip
     this.clickHandler = _.bind(this.clicked, this);
     this.keypressHandler = _.bind(this.keypressed, this);
     $(window).on('click', this.clickHandler);
@@ -457,14 +453,14 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
   exit: function(evt, silent) {
     /*
      * wait until animation complete before
-     * calling destroy();
+     * calling destroyTooltip();
      */
 
     this.silent = silent || false;
-    this.animate(false, this.destroy);
+    this.animate(false, this.destroyTooltip);
   },
 
-  destroy: function() {
+  destroyTooltip: function() {
     // Remove tooltip reference from $el data
     this.options.$el.data('activeTooltip', null);
     // Unbind window listeners relating to this tooltip
@@ -480,8 +476,8 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
     if (this.options.exit) {
       this.options.$el.off(this.options.exit, this.exitHandler);
     }
-    if (this.options.onClose) {
-      this.onClose();
+    if (this.options.onDestroy) {
+      this.onDestroy();
     }
 
     /*
@@ -491,9 +487,9 @@ Backbone.Tooltip = Backbone.Marionette.ItemView.extend({
     this.unbind();
   },
 
-  onClose: function() {
+  onDestroy: function() {
     if (!this.silent) {
-      this.options.onClose();
+      this.options.onDestroy();
     }
   },
 
